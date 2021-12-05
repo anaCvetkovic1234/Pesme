@@ -1,6 +1,6 @@
 <?php
 
-class PisacServis{
+class PevacServis{
     private $broker;
     
     public function __construct($b){
