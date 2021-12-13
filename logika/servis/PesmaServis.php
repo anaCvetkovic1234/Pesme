@@ -20,15 +20,15 @@ class PesmaServis{
         return $this->toDto($pesma);
     }
     public function kreiraj($pesmaDto){
-        $this->broker->upisi("insert into pesma(naziv,trajanje,link,zanr,pevac) values('".$pesmaDto['naziv'].
-                                "',".$pesmaDto['trajanje'].",'".$pesmaDto['link']."',".$pesmaDto['zanr'].",".$pesmaDto['pevac'].")");
-        $id=  $this->broker->getLastId();
-        return $this->toDto($this->vratiJednu($id));
+        $this->broker->upisi("insert into pesma(naziv,trajanje,zanr,pevac) values('".$pesmaDto['naziv'].
+                                "',".$pesmaDto['trajanje'].",".$pesmaDto['zanr'].",".$pesmaDto['pevac'].")");
+        $id=$this->broker->getLastId();
+        return $this->vratiJednu($id);
     }
     public function izmeni($id,$pesmaDto){
         $this->broker->upisi("update pesma set naziv='".$pesmaDto['naziv']."', trajanje=".$pesmaDto['trajanje'].
-                                ", link='".$pesmaDto['link']."' , zanr=".$pesmaDto['zanr']." , pevac=".$pesmaDto['pevac']." where id=".$id);
-        return $this->toDto($this->vratiJednu($id));
+                                ", zanr=".$pesmaDto['zanr']." , pevac=".$pesmaDto['pevac']." where id=".$id);
+        return $this->vratiJednu($id);
     }
     public function obrisi($id){
         $this->broker->upisi("delete from pesma where id=".$id);
@@ -38,7 +38,6 @@ class PesmaServis{
             "id"=>$pesma->id,
             "naziv"=>$pesma->naziv,
             "trajanje"=>$pesma->trajanje,
-            "link"=>$pesma->link,
             "zanr"=>[
                 "id"=>$pesma->zanr,
                 "naziv"=>$pesma->zanr_naziv

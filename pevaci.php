@@ -64,6 +64,7 @@
     let pevaci = [];
     $(document).ready(function () {
         ucitaj();
+        $('#pretraga').change(iscrtajTabelu);
         $('#exampleModal').on('show.bs.modal', function (e) {
             let dugme = $(e.relatedTarget);
             const odabraniId = dugme.data('id');
