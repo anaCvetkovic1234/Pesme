@@ -1,4 +1,8 @@
 <?php
+include '../../logika/dbbroker.php';
+include '../../logika/servis/ZanrServis.php';
+include '../../logika/servis/PevacServis.php';
+include '../../logika/servis/PesmaServis.php';
 class Controller{
 
     private $broker;

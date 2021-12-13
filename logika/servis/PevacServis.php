@@ -8,26 +8,26 @@ class PevacServis{
     }
 
     public function vratiSve(){
-        return $this->broker->ucitajKOlekciju("select ime, prezime, godina_rodjenja as 'godinaRodjenja' from pisac");
+        return $this->broker->ucitajKOlekciju("select id, ime, prezime, godina_rodjenja as 'godinaRodjenja' from pevac");
     }
-    public function kreiraj($pisacDto){
-        $this->broker->upisi("insert into pisac(ime,prezime,godina_rodjenja) values ('".
-                                $pisacDto['ime']."',''".$pisacDto['prezime'].",".$pisacDto['godinaRodjenja'].")");
-        $id=  $this->broker->getLastId();
+    public function kreiraj($pevacDto){
+        $this->broker->upisi("insert into pevac(ime,prezime,godina_rodjenja) values ('".
+                                $pevacDto['ime']."','".$pevacDto['prezime']."',".$pevacDto['godinaRodjenja'].")");
+        $id= $this->broker->getLastId();
         return $this->vratiJedan($id);
     }
 
-    public function izmeni($id,$pisacDto){
-        $this->broker->upisi("update pisac set ime='".$pisacDto['ime'].
-                                "', prezime='".$pisacDto['prezime']."', godina_rodjenja=".
-                                $pisacDto['godinaRodjenja']." where id=".$id);
+    public function izmeni($id,$pevacDto){
+        $this->broker->upisi("update pevac set ime='".$pevacDto['ime'].
+                                "', prezime='".$pevacDto['prezime']."', godina_rodjenja=".
+                                $pevacDto['godinaRodjenja']." where id=".$id);
         return $this->vratiJedan($id);
     }
     public function vratiJedan($id){
-        $this->broker->ucitajJedan("select ime, prezime, godina_rodjenja as 'godinaRodjenja' from pisac where id=".$id);
+       return $this->broker->ucitajJedan("select id, ime, prezime, godina_rodjenja as 'godinaRodjenja' from pevac where id=".$id);
     }
     public function obrisi($id){
-        $this->broker->upisi("delete from pisac where id=".$id);
+        $this->broker->upisi("delete from pevac where id=".$id);
     }
 }
 
